@@ -1,6 +1,16 @@
-Change history for Template-Plugin-DateTime-Format
+Revision history for Perl module Template::Plugin::DateTime::Format
 
-0.01    Mon Jul 28 15:14:12 CDT 2008
-        - first version
+0.03 2014-01-10 NEILB
+    - Switched to using Class::Load instead of Class::MOP. RT#90976
+      PR from ZOFFIX++
+    - Added github repo to pod
+    - Switched dist.ini to my usual setup
+    - Reformatted this file as per CPAN::Changes::Spec
 
-0.02     Mon Dec 27 06:50:51 CST 2010
+0.02 2010-12-27 JROCKWAY
+    - convert to dzil
+    - fix test
+
+0.01 2008-07-28 JROCKWAY
+    - first version
+

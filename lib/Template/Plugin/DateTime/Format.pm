@@ -1,18 +1,18 @@
 package Template::Plugin::DateTime::Format;
-BEGIN {
-  $Template::Plugin::DateTime::Format::VERSION = '0.02';
-}
-# ABSTRACT: format DateTime objects from inside TT with C<DateTime::Format>-style formatters
+$Template::Plugin::DateTime::Format::VERSION = '0.03';
+# ABSTRACT: format DateTime objects from inside TT with DateTime::Format-style formatters
+
+use 5.006;
 use strict;
 use warnings;
 use DateTime;
-use Class::MOP;
+use Class::Load;
 
 use base 'Template::Plugin';
 
 sub new {
     my ($class, $context, $formatter_class, $new_args, $format_args) = @_;
-    Class::MOP::load_class($formatter_class || die 'need class name');
+    Class::Load::load_class($formatter_class || die 'need class name');
 
     my @new_args = ref $new_args eq 'ARRAY' ? @$new_args : $new_args;
     { no warnings;
@@ -36,17 +36,11 @@ sub format {
 
 1;
 
-
-
-=pod
+__END__
 
 =head1 NAME
 
-Template::Plugin::DateTime::Format - format DateTime objects from inside TT with C<DateTime::Format>-style formatters
-
-=head1 VERSION
-
-version 0.02
+Template::Plugin::DateTime::Format - format DateTime objects from inside TT with DateTime::Format-style formatters
 
 =head1 SYNOPSIS
 
@@ -102,6 +96,10 @@ Called by TT to create a new formatter.
 
 Formats C<$datetime>.
 
+=head1 REPOSITORY
+
+L<https://github.com/neilbowers/Template-Plugin-DateTime-Format>
+
 =head1 AUTHOR
 
 Jonathan Rockway C<< <jrockway@cpan.org> >>
@@ -112,20 +110,4 @@ Copyright (c) 2008 Jonathan Rockway.
 
 This module is free software.  You may redistribute it under the same
 terms as perl itself.
-
-=head1 AUTHOR
-
-Jonathan Rockway <jrockway@cpan.org>
-
-=head1 COPYRIGHT AND LICENSE
-
-This software is copyright (c) 2010 by Jonathan Rockway.
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
-
-=cut
-
-
-__END__
 
